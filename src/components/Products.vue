@@ -28,7 +28,7 @@ const props = defineProps(
         </p>
       </div>
       <p class="text-gray-800 text-semibold text-center text-[1rem]">
-          {{ props.title }}...
+          {{ props.title.substring(0,20) }}...
         </p>
       <div class="flex  justify-center items-center">
       
