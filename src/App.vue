@@ -2,7 +2,8 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { UserIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/24/solid'
 import { ref } from "vue";
-import { onClickOutside } from '@vueuse/core'
+import { onClickOutside } from '@vueuse/core';
+import Footer from './components/Footer.vue';
 const modal = ref(false);
 const target = ref(null)
 onClickOutside(target, (event) => modal.value = false)
@@ -45,9 +46,10 @@ onClickOutside(target, (event) => modal.value = false)
     </div>
 
   </header>
-  <div class=" ">
+  <div class="min-h-screen ">
     <RouterView />
   </div>
+  <Footer/>
 </template>
 
 <style scoped></style>

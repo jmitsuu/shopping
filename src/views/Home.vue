@@ -1,6 +1,6 @@
 <script setup>
 import Products from '../components/Products.vue';
-import {results, data } from "../composables/getApi";
+import {results } from "../helpers/getApi";
 import { ref, onMounted } from "vue";
 import layout from "../components/layout.vue";
 import bg1 from "../assets/images/b1.jpg";
@@ -8,13 +8,13 @@ import bg2 from "../assets/images/b2.jpg";
 import bg3 from "../assets/images/b3.jpg";
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide } from 'vue3-carousel';
-import { TruckIcon, CreditCardIcon, ShoppingBagIcon, CheckBadgeIcon } from '@heroicons/vue/24/solid'
-
+import { TruckIcon, CreditCardIcon, ShoppingBagIcon, CheckBadgeIcon } from '@heroicons/vue/24/solid';
+import { useProduct } from '../stores/storeProducts';
+const store = useProduct()
 const slides = [bg1, bg2, bg3]
 
-onMounted(async () => {
-data()
-
+onMounted( () => {
+store.getApi('?limit=20')
 })
 </script>
 
@@ -66,11 +66,11 @@ data()
   </div>
   <layout>
     <template #prod>
-      <div class="" v-for="item in results" :key="item.id">
+      <div class="" v-for="item in store.responseUrl" :key="item.id">
         <Products :title="item.title" :items="item" :img="item.image" :price="item.price" />
       </div>
 
 
     </template>
   </layout>
-</template>
+</template>../helpers/getApi
