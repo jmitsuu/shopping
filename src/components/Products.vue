@@ -15,7 +15,7 @@ const props = defineProps(
 <template>
   <RouterLink to="/Description" @click="store.getInfo(props.items)">
     <div
-      class="flex h-full border-[0.1em]  hover:shadow-[#011526] shadow-inner  transition duration-300 p-4 rounded-md text-center flex-col">
+      class="flex h-72 w-44 border-[0.1em]  hover:shadow-[#011526] shadow-inner  transition duration-300 p-4 rounded-md text-center flex-col">
       <img :src="props.img" class="rounded-lg mx-auto h-36 w-36 " />
       <div class="flex flex-col items-center">
         <p class="text-gray-600 text-xs xl:text-[1.0rem]">

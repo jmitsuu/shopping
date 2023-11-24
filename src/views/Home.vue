@@ -1,6 +1,6 @@
 <script setup>
 import Products from '../components/Products.vue';
-import { data } from "../composables/getApi";
+import {results, data } from "../composables/getApi";
 import { ref, onMounted } from "vue";
 import layout from "../components/layout.vue";
 import bg1 from "../assets/images/b1.jpg";
@@ -11,15 +11,9 @@ import { Carousel, Slide } from 'vue3-carousel';
 import { TruckIcon, CreditCardIcon, ShoppingBagIcon, CheckBadgeIcon } from '@heroicons/vue/24/solid'
 
 const slides = [bg1, bg2, bg3]
-const products = ref()
-async function getProducts() {
-  const response = await data('?limit=20')
-  products.value = response.data
-
-}
 
 onMounted(async () => {
-  getProducts()
+data()
 
 })
 </script>
@@ -72,7 +66,7 @@ onMounted(async () => {
   </div>
   <layout>
     <template #prod>
-      <div class="" v-for="item in products" :key="item.id">
+      <div class="" v-for="item in results" :key="item.id">
         <Products :title="item.title" :items="item" :img="item.image" :price="item.price" />
       </div>
 

@@ -9,7 +9,7 @@ onClickOutside(target, (event) => modal.value = false)
 </script>
 
 <template>
-  <header class="w-full h-20 bg-[#038C73] shadow-black shadow-lg z-50">
+  <header class="w-full h-20 bg-[#038C73]  z-50">
     <div class="flex w-full h-full justify-center items-center">
       <nav class="flex relative w-full container h-full text-slate-100  justify-center items-center gap-5 ">
         <RouterLink class="" to="/">Home</RouterLink>
@@ -22,15 +22,15 @@ onClickOutside(target, (event) => modal.value = false)
             class="absolute bottom-[-10] gap-3 text-slate-800 flex flex-col z-50 bg-gray-200 rounded-md py-2 px-4">
             <h1 class="text-gray-900 font-bold text-[1.2rem] border-b-[0.1rem] border-black text-center">Vestuario</h1>
 
-            <RouterLink to="/masculina" @click="modal = false">Masculina</RouterLink>
-            <RouterLink to="/feminina" @click="modal = false">Feminina</RouterLink>
+            <RouterLink to="/vestuario/masculino" @click="modal = false">Masculino</RouterLink>
+            <RouterLink to="/vestuario/feminino" @click="modal = false">Feminino</RouterLink>
             <h1 class="text-gray-900 font-bold text-[1.2rem] border-b-[0.1rem] border-black text-center">Acessórios</h1>
 
-            <RouterLink to="/masculina" @click="modal = false">Jóias</RouterLink>
+            <RouterLink to="/acessorios/joias" @click="modal = false">Jóias</RouterLink>
 
             <h1 class="text-gray-900 font-bold text-[1.2rem] border-b-[0.1rem] border-black text-center">Informática</h1>
 
-            <RouterLink to="/masculina" @click="modal = false">Eletronicos</RouterLink>
+            <RouterLink to="/informatica/eletronicos" @click="modal = false">Eletronicos</RouterLink>
 
 
           </div>
