@@ -1,29 +1,30 @@
 <script setup>
-import {ref, onMounted} from 'vue';
-import Products from '../../components/Products.vue';
+import { ref, onMounted } from "vue";
+import Products from "../../components/Products.vue";
 import layout from "../../components/layout.vue";
-import {eletronicProducts} from "../../helpers/getApi";
-import Scope from '../../components/Scope.vue';
-import {textEletronics} from "../../helpers/message"
-
-
+import Scope from "../../components/Scope.vue";
+import { textEletronics } from "../../helpers/message";
+import { useProduct } from "../../stores/storeProducts";
+const store = useProduct();
+onMounted(() => {
+  store.getApi("/category/electronics");
+});
 </script>
 <template>
-
- 
-
-
-<layout>
-  <template #scope>
+  <layout>
+    <template #scope>
       <Scope :title="'Eletronicos'" :text="textEletronics" />
     </template>
     <template #prod>
-      <div class="" v-for="item in eletronicProducts" :key="item.id">
-        <Products :title="item.title" :items="item" :img="item.image" :price="item.price" />
-      
+      <div class="" v-for="item in store.responseUrl" :key="item.id">
+        <Products
+          :title="item.title"
+          :items="item"
+          :img="item.image"
+          :price="item.price"
+        />
       </div>
-
-
     </template>
   </layout>
-</template>../../helpers/getApi../../helpers/message
+</template>
+../../helpers/getApi../../helpers/message

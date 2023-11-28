@@ -1,18 +1,23 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia';
-import instance from "../http/getUrl"
+import { ref, computed } from "vue";
+import { defineStore } from "pinia";
+import instance from "../http/getUrl";
 
-export const useProduct = defineStore('useProduct', () => {
+export const useProduct = defineStore("useProduct", () => {
   const infoProduct = ref();
-  const responseUrl = ref()
-  function incrementProduct( item) {
-  infoProduct.value = item;
-  console.log( infoProduct.value)
+  const responseUrl = ref();
+  const skeletonLoad = ref(false);
+  //this function receive items from products.vue
+  function incrementProduct(item) {
+    infoProduct.value = item;
   }
-  async function getApi(endpoint){
-   responseUrl.value = await instance.get(`/products/${endpoint}`).data;
-   console.log(endpoint)
-  }
+  //this function receive route parameters
+  const getApi = async (fetch) => {
+    skeletonLoad.value = true;
+    setTimeout(async () => {
+      responseUrl.value = (await instance.get(`/products/${fetch}`)).data;
+      skeletonLoad.value = false;
+    }, 400);
+  };
 
-  return { infoProduct, incrementProduct, getApi, responseUrl }
-})
+  return { infoProduct, incrementProduct, getApi, responseUrl, skeletonLoad };
+});
