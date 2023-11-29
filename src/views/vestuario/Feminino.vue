@@ -27,6 +27,7 @@ onMounted(() => {
           :items="item"
           :img="item.image"
           :price="item.price"
+          :id="item.id"
         />
       </div>
     </template>

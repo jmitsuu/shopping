@@ -44,8 +44,8 @@ const router = createRouter({
     }
     ,
     {
-      path: '/descricao',
-      name: 'descrição',
+      path: '/descricao/:id',
+      name: 'descricao',
       component: Description
     }
   ]

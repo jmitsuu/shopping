@@ -1,8 +1,10 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useProduct } from "../stores/storeProducts";
+import { useRouter } from "vue-router";
 
 const store = useProduct();
+const router = useRouter()
 const props = defineProps({
   title: String,
   price: Number,
@@ -10,13 +12,18 @@ const props = defineProps({
   description: String,
   count: Number,
   rate: Number,
-  items: String,
   item: String,
+  id:Number,
 });
+const goToDescriptions = (id) =>{
+router.push({name:'descricao', params:{id}})
+}
+
 </script>
 <template>
-  <RouterLink to="/descricao" @click="store.incrementProduct(props.items)">
+
     <div
+   
       v-if="store.skeletonLoad"
       class="h-72 w-44 flex justify-center items-center border-2 bg-gray-200 rounded-md animate-pulse"
     >
@@ -25,7 +32,8 @@ const props = defineProps({
 
     <div
       v-else
-      class="flex h-72 w-44 border-[0.1em] hover:shadow-[#011526] shadow-inner transition duration-300 p-4 rounded-md text-center flex-col"
+      @click="goToDescriptions(id)"
+      class="flex h-72 w-44 cursor-pointer border-[0.1em] hover:shadow-[#011526] shadow-inner transition duration-300 p-4 rounded-md text-center flex-col"
     >
       <img :src="props.img" class="rounded-lg mx-auto h-36 w-36" />
       <div class="flex flex-col items-center">
@@ -50,5 +58,5 @@ const props = defineProps({
         </p>
       </div>
     </div>
-  </RouterLink>
+
 </template>

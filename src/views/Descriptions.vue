@@ -7,25 +7,31 @@ import {
 } from "@heroicons/vue/24/solid";
 import axios from "axios";
 const store = useProduct();
-import { ref, onMounted } from "vue";
+import { ref, computed } from "vue";
+import  {useRoute} from "vue-router";
+
+const route = useRoute()
 const modal = ref(false);
 const qtd = ref(1);
 const inputCep = ref("88113500");
 const dataLocal = ref();
 const priceSplit = ref();
-async function getCep() {
-  const { data } = await axios.get(
-    `https://viacep.com.br/ws/${inputCep.value.trim().replace("-", "")}/json/`
-  );
-  dataLocal.value = data;
-  modal.value = false;
-}
-console.log("olamundo");
-if (!store.infoProduct) {
-  window.location.href = "/";
-}
-getCep();
-onMounted(() => {});
+// async function getCep() {
+//   const { data } = await axios.get(
+//     `https://viacep.com.br/ws/${inputCep.value.trim().replace("-", "")}/json/`
+//   );
+//   dataLocal.value = data;
+//   modal.value = false;
+// }
+// getCep();
+
+
+
+const selectedProduct = computed(()=>{
+  window.scrollTo(0, 0);
+  return store.responseUrl.find((item) => item.id === Number(route.params.id))
+})
+
 </script>
 
 <template>
@@ -35,13 +41,11 @@ onMounted(() => {});
     <div class="mx-auto container border-[0.1rem] rounded-md p-3 bg-white">
       <div
         class="xl:w-2/4 min-w-[800px] mx-auto justify-center items-center border-[0.1rem] flx xl:flex rounded-md mt-4 xl:pl-10 xl:pt-9 p-4"
-        v-for="item in [store.infoProduct]"
-        :key="item.id"
       >
-        <img :src="item.image" class="h-56 mx-auto w-56" />
+        <img :src="selectedProduct.image" class="h-56 mx-auto w-56" />
         <div class="xl:ml-10 w-full">
           <h1 class="text-gray-700 xl:text-[1.8rem] text-center font-semibold">
-            {{ item.title }}
+            {{ selectedProduct.title }}
           </h1>
           <div
             class="flex gap-4 relative text-gray-600 w-full border-[0.1rem] border-gray-300 p-3 rounded-md"
@@ -49,13 +53,13 @@ onMounted(() => {});
             <h2 class="border-r-2 pr-1 cursor-pointer">
               <span
                 class="font-bold flex justify-center items-center text-[1.1rem] mr-3"
-                >{{ item.rating.rate }}
+                >{{ selectedProduct.rating.rate }}
                 <span class="text-xs ml-1 text-center">/5</span>
                 <div class="flex h-10 w-20 ml-4 items-center">
                   <StarIcon
                     class="h-6 w-6"
                     :class="
-                      item.rating.rate >= 1
+                      selectedProduct.rating.rate >= 1
                         ? ' text-yellow-600'
                         : '  text-yellow-600/10'
                     "
@@ -63,7 +67,7 @@ onMounted(() => {});
                   <StarIcon
                     class="h-6 w-6"
                     :class="
-                      item.rating.rate >= 2
+                      selectedProduct.rating.rate >= 2
                         ? ' text-yellow-600'
                         : '  text-yellow-600/10'
                     "
@@ -71,7 +75,7 @@ onMounted(() => {});
                   <StarIcon
                     class="h-6 w-6"
                     :class="
-                      item.rating.rate >= 3
+                      selectedProduct.rating.rate >= 3
                         ? ' text-yellow-600'
                         : '  text-yellow-600/10'
                     "
@@ -79,7 +83,7 @@ onMounted(() => {});
                   <StarIcon
                     class="h-6 w-6"
                     :class="
-                      item.rating.rate >= 4
+                      selectedProduct.rating.rate >= 4
                         ? ' text-yellow-600'
                         : '  text-yellow-600/10'
                     "
@@ -87,7 +91,7 @@ onMounted(() => {});
                   <StarIcon
                     class="h-6 w-6"
                     :class="
-                      item.rating.rate >= 4.7
+                      selectedProduct.rating.rate >= 4.7
                         ? ' text-yellow-600'
                         : '  text-yellow-600/10'
                     "
@@ -97,14 +101,14 @@ onMounted(() => {});
             </h2>
 
             <h2 class="font-bold right-2 top-[30%] absolute">
-              {{ item.rating.count }} vendidos
+              {{ selectedProduct.rating.count }} vendidos
             </h2>
           </div>
           <h1 class="mt-4 text-[2.5rem] font-bold text-red-800">
-            {{ item.price }} R$
+            {{ selectedProduct.price }} R$
           </h1>
           <div>
-            <h1 v-if="(priceSplit = item.price / 8)">
+            <h1 v-if="(priceSplit = selectedProduct.price / 8)">
               8x de
               <span class="text-red-700 font-semibold">{{
                 priceSplit.toFixed(2)
@@ -122,8 +126,8 @@ onMounted(() => {});
               >
                 <Square3Stack3DIcon class="h-5 mr-4" />
                 <span>
-                  {{ dataLocal.uf }}, {{ dataLocal.localidade }},
-                  {{ dataLocal.logradouro }}
+                  <!-- {{ dataLocal.uf }}, {{ dataLocal.localidade }},
+                  {{ dataLocal.logradouro }} -->
                 </span>
               </p>
               <div
@@ -166,13 +170,12 @@ onMounted(() => {});
       </div>
       <div
         class="xl:w-2/4 min-w-[800px] mx-auto xl:min-h-[300px] mt-6 bg-white border-t-[0.1rem] xl:pl-10 xl:pt-9 p-4"
-        v-for="item in [store.infoProduct]"
-        :key="item.id"
+      
       >
         <h1 class="text-gray-600 text-[1.4rem] p-3 w-full bg-slate-100 h-full">
           Descrição do Produto
         </h1>
-        <p class="text-[0.9rem] mt-10">{{ item.description }}</p>
+        <p class="text-[0.9rem] mt-10">{{ selectedProduct.description }}</p>
       </div>
       <div
         class="mx-auto min-w-[800px] xl:w-2/4 border-t-[0.1rem] p-3 bg-white"
@@ -182,15 +185,15 @@ onMounted(() => {});
             <span class="border-b-2 pb-2">Avaliações</span>
           </h1>
 
-          <div class="mt-10" v-for="item in [store.infoProduct]" :key="item.id">
+          <div class="mt-10">
             <h1 class="text-[4.1rem] font-bold text-gray-700">
-              {{ item.rating.rate }}<span class="text-xl">/5</span>
+              {{ selectedProduct.rating.rate }}<span class="text-xl">/5</span>
             </h1>
             <div class="flex">
               <StarIcon
                 class="h-6 w-6"
                 :class="
-                  item.rating.rate >= 1
+                  selectedProduct.rating.rate >= 1
                     ? ' text-yellow-600'
                     : '  text-yellow-600/10'
                 "
@@ -198,7 +201,7 @@ onMounted(() => {});
               <StarIcon
                 class="h-6 w-6"
                 :class="
-                  item.rating.rate >= 2
+                  selectedProduct.rating.rate >= 2
                     ? ' text-yellow-600'
                     : '  text-yellow-600/10'
                 "
@@ -206,7 +209,7 @@ onMounted(() => {});
               <StarIcon
                 class="h-6 w-6"
                 :class="
-                  item.rating.rate >= 3
+                  selectedProduct.rating.rate >= 3
                     ? ' text-yellow-600'
                     : '  text-yellow-600/10'
                 "
@@ -214,7 +217,7 @@ onMounted(() => {});
               <StarIcon
                 class="h-6 w-6"
                 :class="
-                  item.rating.rate >= 4
+                  selectedProduct.rating.rate >= 4
                     ? ' text-yellow-600'
                     : '  text-yellow-600/10'
                 "
@@ -222,7 +225,7 @@ onMounted(() => {});
               <StarIcon
                 class="h-6 w-6"
                 :class="
-                  item.rating.rate >= 4.7
+                  selectedProduct.rating.rate >= 4.7
                     ? ' text-yellow-600'
                     : '  text-yellow-600/10'
                 "
