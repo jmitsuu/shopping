@@ -18,7 +18,7 @@ const store = useProduct();
 const slides = [bg1, bg2, bg3];
 
 onMounted(async () => {
-  store.getApi("?limit=20");
+  store.getApi();
 });
 </script>
 
@@ -77,7 +77,7 @@ onMounted(async () => {
         <Products
           :title="item.title"
           :items="item"
-          :img="item.image"
+          :img="item.image_url"
           :price="item.price"
           :id="item.id"
         />

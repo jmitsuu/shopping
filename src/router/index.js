@@ -4,7 +4,9 @@ import Masculino from "../views/vestuario/Masculino.vue"
 import Feminino from "../views/vestuario/Feminino.vue"
 import Joias from "../views/acessorios/Joias.vue"
 import Eletronicos from "../views/informatica/Eletronicos.vue"
-import Description from "../views/Descriptions.vue"
+import Description from "../views/Descriptions.vue";
+import Administrator from "../views/panel/Administrator.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -46,7 +48,13 @@ const router = createRouter({
     {
       path: '/descricao/:id',
       name: 'descricao',
-      component: Description
+      component:  Description
+    }
+    ,
+    {
+      path: '/administrador/',
+      name: 'administrador',
+      component: Administrator
     }
   ]
 })

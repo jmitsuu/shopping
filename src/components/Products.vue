@@ -25,7 +25,7 @@ router.push({name:'descricao', params:{id}})
     <div
    
       v-if="store.skeletonLoad"
-      class="h-72 w-44 flex justify-center items-center border-2 bg-gray-200 rounded-md animate-pulse"
+      class="h-72 w-48 flex justify-center items-center border-2 bg-gray-200 rounded-md animate-pulse"
     >
       <span class="text-gray-800 text-2xl"> </span>
     </div>
@@ -33,7 +33,7 @@ router.push({name:'descricao', params:{id}})
     <div
       v-else
       @click="goToDescriptions(id)"
-      class="flex h-72 w-44 cursor-pointer border-[0.1em] hover:shadow-[#011526] shadow-inner transition duration-300 p-4 rounded-md text-center flex-col"
+      class="flex h-72 w-48 cursor-pointer border-[0.1em] hover:shadow-[#011526] shadow-inner transition duration-300 p-4 rounded-md text-center flex-col"
     >
       <img :src="props.img" class="rounded-lg mx-auto h-36 w-36" />
       <div class="flex flex-col items-center">

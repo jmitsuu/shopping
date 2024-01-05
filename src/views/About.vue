@@ -1,3 +1,9 @@
+<script setup>
+import axios from "axios";
+import {ref} from "vue";
+
+</script>
+
 <template>
   <div class="about">
     <h1>This is an about page</h1>

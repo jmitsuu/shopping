@@ -4,9 +4,13 @@ import { UserIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/vue/24/soli
 import { ref } from "vue";
 import { onClickOutside } from '@vueuse/core';
 import Footer from './components/Footer.vue';
+import Administrador from "./views/panel/Administrator.vue"
 const modal = ref(false);
 const target = ref(null)
 onClickOutside(target, (event) => modal.value = false)
+if(window.location.reload){
+  modal.value = false
+}
 </script>
 
 <template>
@@ -46,9 +50,11 @@ onClickOutside(target, (event) => modal.value = false)
     </div>
 
   </header>
+  
   <div class="min-h-screen ">
     <RouterView />
   </div>
+
   <Footer/>
 </template>
 

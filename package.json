@@ -2,6 +2,7 @@
   "name": "shoppingdev",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,8 +13,9 @@
   },
   "dependencies": {
     "@heroicons/vue": "^2.0.18",
-    "@vueuse/core": "^10.6.1",
-    "axios": "^1.6.2",
+    "@vueuse/core": "^10.7.1",
+    "axios": "^1.6.4",
+    "dotenv": "^16.3.1",
     "pinia": "^2.1.7",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5",
