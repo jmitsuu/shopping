@@ -2,6 +2,7 @@ import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import instance from "../http/getUrl";
 import axios from "axios";
+const url = import.meta.env.VITE_API_URL
 export const useProduct = defineStore("useProduct", () => {
   const infoProduct = ref();
   const responseUrl = ref();
@@ -33,7 +34,7 @@ async function postProduct(items) {
     redirect: 'follow'
   };
   
-  fetch("http://localhost:3000/products/", requestOptions)
+  fetch(`${url}/products`, requestOptions)
   .then(()=>{
     getApi()
   })

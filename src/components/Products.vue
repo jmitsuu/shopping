@@ -33,9 +33,9 @@ router.push({name:'descricao', params:{id}})
     <div
       v-else
       @click="goToDescriptions(id)"
-      class="flex h-72 w-48 cursor-pointer border-[0.1em] hover:shadow-[#011526] shadow-inner transition duration-300 p-4 rounded-md text-center flex-col"
+      class="flex h-[550px] cursor-pointer border-[0.1em] hover:shadow-md transition duration-300 p-4 rounded-md text-center flex-col"
     >
-      <img :src="props.img" class="rounded-lg mx-auto h-36 w-36" />
+      <img :src="props.img" class="rounded-lg mx-auto h-[400px] " />
       <div class="flex flex-col items-center">
         <p class="text-gray-600 text-xs xl:text-[1.0rem]">
           {{ props.description }}
@@ -45,12 +45,13 @@ router.push({name:'descricao', params:{id}})
           {{ rate }}
         </p>
       </div>
-      <p
+  
+      <div class="mt-8">
+        <p
         class="text-slate-500 font-semibold text-semibold text-center text-[1rem]"
       >
-        {{ props.title.substring(0, 20) }}...
+        {{ props.title}}
       </p>
-      <div class="flex justify-center items-center">
         <p class="text-orange-500 text-[1.2rem] text-bold mt-3">
           <span class="border-t-2 border-orange-600">
             {{ props.price }} R$</span

@@ -14,9 +14,9 @@ if(window.location.reload){
 </script>
 
 <template>
-  <header class="w-full h-20 bg-[#038C73]  z-50">
+  <header class="w-full h-20  z-50 border-b-2">
     <div class="flex w-full h-full justify-center items-center">
-      <nav class="flex relative w-full container h-full text-slate-100  justify-center items-center gap-5 ">
+      <nav class="flex relative w-full container h-full uppercase text-slate-800   justify-center items-center gap-5 ">
         <RouterLink class="" to="/">Home</RouterLink>
         <div class="relative">
           <h1 @click="modal = !modal" class="cursor-pointer flex items-center gap-1" @mouseover="modal = true">Produtos
@@ -25,15 +25,15 @@ if(window.location.reload){
           </h1>
           <div ref="target" v-if="modal" @mouseleave="modal = false"
             class="absolute bottom-[-10] gap-3 text-slate-800 flex flex-col z-50 bg-gray-200 rounded-md py-2 px-4">
-            <h1 class="text-gray-900 font-bold text-[1.2rem] border-b-[0.1rem] border-black text-center">Vestuario</h1>
+            <h1 class="text-gray-800 font-bold  border-b-[0.1rem] border-black text-center">Vestuario</h1>
 
             <RouterLink to="/vestuario/masculino" @click="modal = false">Masculino</RouterLink>
             <RouterLink to="/vestuario/feminino" @click="modal = false">Feminino</RouterLink>
-            <h1 class="text-gray-900 font-bold text-[1.2rem] border-b-[0.1rem] border-black text-center">Acessórios</h1>
+            <h1 class="text-gray-900 font-bold  border-b-[0.1rem] border-black text-center">Acessórios</h1>
 
             <RouterLink to="/acessorios/joias" @click="modal = false">Jóias</RouterLink>
 
-            <h1 class="text-gray-900 font-bold text-[1.2rem] border-b-[0.1rem] border-black text-center">Informática</h1>
+            <h1 class="text-gray-900 font-bold  border-b-[0.1rem] border-black text-center">Informática</h1>
 
             <RouterLink to="/informatica/eletronicos" @click="modal = false">Eletronicos</RouterLink>
 
@@ -41,8 +41,8 @@ if(window.location.reload){
           </div>
         </div>
 
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/" class="right-28 absolute flex items-center">
+        <RouterLink to="/">About</RouterLink>
+        <RouterLink to="/auth/acesso/" class="right-28 absolute flex items-center">
           <UserIcon class="h-4 mr-3 text-sm" /> Entre ou Cadastre-se
         </RouterLink>
       </nav>

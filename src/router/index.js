@@ -6,6 +6,7 @@ import Joias from "../views/acessorios/Joias.vue"
 import Eletronicos from "../views/informatica/Eletronicos.vue"
 import Description from "../views/Descriptions.vue";
 import Administrator from "../views/panel/Administrator.vue";
+import Acess from "../views/auth/Acess.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,6 +56,12 @@ const router = createRouter({
       path: '/administrador/',
       name: 'administrador',
       component: Administrator
+    }
+    ,
+    {
+      path: '/auth/acesso',
+      name: 'acesso',
+      component: Acess
     }
   ]
 })

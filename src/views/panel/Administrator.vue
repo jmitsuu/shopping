@@ -128,11 +128,9 @@ onMounted(async () => {
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Categoria
+                                Produto
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                Genero
-                            </th>
+                           
                             <th scope="col" class="px-6 py-3">
                                 imagem
                             </th>
@@ -153,9 +151,7 @@ onMounted(async () => {
                             <td class="px-6 py-4">
                                 {{ item.title }}
                             </td>
-                            <td class="px-6 py-4">
-                                {{ item.genere }}
-                            </td>
+                         
                             <td class="px-6 py-4">
                                 <img class="h-10 w-10 " :src="item.image_url" />
                             </td>
