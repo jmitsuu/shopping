@@ -52,7 +52,7 @@ export const useProduct = defineStore("useProduct", () => {
     }
     localStorage.setItem(
       "credentials",
-      JSON.stringify({ userName: name, verifyUser: auth, acess_level:level })
+      JSON.stringify({ userName: name, verifyUser: auth, acess_level:level, tokenLocal:token })
     );
     const getCredentials = localStorage.getItem("credentials");
   

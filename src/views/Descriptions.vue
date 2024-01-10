@@ -29,7 +29,7 @@ const priceSplit = ref();
 
 const selectedProduct = computed(() => {
   window.scrollTo(0, 0);
-  return store.responseUrl.find((item) => item.id === Number(route.params.id))
+  return store.responseUrl.find((item) => item._id === route.params.id)
 })
 
 </script>
@@ -39,45 +39,12 @@ const selectedProduct = computed(() => {
     <div class="mx-auto container border-[0.1rem] rounded-md p-3 bg-white">
       <div
         class="xl:w-2/4 min-w-[800px] mx-auto justify-center items-center border-[0.1rem] flx xl:flex rounded-md mt-4 xl:pl-10 xl:pt-9 p-4">
-        <img :src="selectedProduct.image" class="h-56 mx-auto w-56" />
+        <img :src="selectedProduct.image_url" class="h-56 mx-auto w-56" />
         <div class="xl:ml-10 w-full">
           <h1 class="text-gray-700 xl:text-[1.8rem] text-center font-semibold">
             {{ selectedProduct.title }}
           </h1>
-          <div class="flex gap-4 relative text-gray-600 w-full border-[0.1rem] border-gray-300 p-3 rounded-md">
-            <h2 class="border-r-2 pr-1 cursor-pointer">
-              <span class="font-bold flex justify-center items-center text-[1.1rem] mr-3">{{ selectedProduct.rating.rate
-              }}
-                <span class="text-xs ml-1 text-center">/5</span>
-                <div class="flex h-10 w-20 ml-4 items-center">
-                  <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 1
-                      ? ' text-yellow-600'
-                      : '  text-yellow-600/10'
-                    " />
-                  <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 2
-                      ? ' text-yellow-600'
-                      : '  text-yellow-600/10'
-                    " />
-                  <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 3
-                      ? ' text-yellow-600'
-                      : '  text-yellow-600/10'
-                    " />
-                  <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 4
-                      ? ' text-yellow-600'
-                      : '  text-yellow-600/10'
-                    " />
-                  <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 4.7
-                      ? ' text-yellow-600'
-                      : '  text-yellow-600/10'
-                    " />
-                </div>
-              </span>
-            </h2>
-
-            <h2 class="font-bold right-2 top-[30%] absolute">
-              {{ selectedProduct.rating.count }} vendidos
-            </h2>
-          </div>
+  
           <h1 class="mt-4 text-[2.5rem] font-bold text-red-800">
             {{ selectedProduct.price }} R$
           </h1>
@@ -138,33 +105,6 @@ const selectedProduct = computed(() => {
             <span class="border-b-2 pb-2">Avaliações</span>
           </h1>
 
-          <div class="mt-10">
-            <h1 class="text-[4.1rem] font-bold text-gray-700">
-              {{ selectedProduct.rating.rate }}<span class="text-xl">/5</span>
-            </h1>
-            <div class="flex">
-              <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 1
-                  ? ' text-yellow-600'
-                  : '  text-yellow-600/10'
-                " />
-              <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 2
-                  ? ' text-yellow-600'
-                  : '  text-yellow-600/10'
-                " />
-              <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 3
-                  ? ' text-yellow-600'
-                  : '  text-yellow-600/10'
-                " />
-              <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 4
-                  ? ' text-yellow-600'
-                  : '  text-yellow-600/10'
-                " />
-              <StarIcon class="h-6 w-6" :class="selectedProduct.rating.rate >= 4.7
-                  ? ' text-yellow-600'
-                  : '  text-yellow-600/10'
-                " />
-            </div>
-          </div>
           <div class="mt-10">
             <h1 class="uppercase font-bold text-gray-800 border-b-2 pb-5 text-[1.3rem]">
               Avaliações mais recentes

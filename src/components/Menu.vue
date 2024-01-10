@@ -17,19 +17,27 @@ onClickOutside(target, (event) => modal.value = false)
 if(window.location.reload){
   modal.value = false
 }
-function getCredentials() {
+async function getCredentials() {
  const getUserLocal =  localStorage.getItem('credentials');
  const userToJson = JSON.parse(getUserLocal)
  if(!userToJson) return;
  name.value = userToJson.userName;
  logged.value = userToJson.verifyUser;
- if(userToJson.acess_level === 3 )
- acessLevel.value = 3;
- 
+ const {data} = await instance.get('/admin',{
+  headers:{
+    'authorization': userToJson.tokenLocal
+  }
+ });
+ if(userToJson.tokenLocal === data.userToken )
+ acessLevel.value = true;
+
 }
 
 async function logout(){
  await instance.post('/logout');
+ setTimeout(() => {
+  window.location.reload()
+ }, 300);
  localStorage.clear('credentials')
 }
 
@@ -67,7 +75,7 @@ onMounted(()=>{
           </div>
         </div>
         <RouterLink to="/">Sobre nós</RouterLink>
-        <RouterLink to="/administrador" class="text-red-800 hover:text-red-500 font-bold" v-if="acessLevel === 3"  >Administrador</RouterLink>
+        <RouterLink to="/administrador" class="text-red-800 hover:text-red-500 font-bold" v-if="acessLevel"  >Administrador</RouterLink>
         <RouterLink to="/auth/acesso/" class="right-28 absolute flex items-center" v-if="!logged" >
           <UserIcon class="h-4 mr-3 text-sm" /> Entre ou Cadastre-se
         </RouterLink>
