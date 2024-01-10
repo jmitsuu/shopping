@@ -73,13 +73,13 @@ onMounted(async () => {
   </div>
   <layout>
     <template #prod>
-      <div class="" v-for="item in store.responseUrl" :key="item.id">
+      <div class="" v-for="item in store.responseUrl" :key="item._id">
         <Products
           :title="item.title"
           :items="item"
           :img="item.image_url"
           :price="item.price"
-          :id="item.id"
+          :id="item._id"
         />
         
       </div>

@@ -1,4 +1,9 @@
+<script setup>
+
+
+</script>
 <template>
+
   <div class="container mx-auto mt-2 bg-slate-50">
     <slot name="scope"></slot>
   </div>
