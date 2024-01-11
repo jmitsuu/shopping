@@ -113,8 +113,8 @@ router.beforeEach( async (to, from, next) =>{
         'authorization': user.tokenLocal
       }
     });
-    console.log(user.tokenLocal)
-    if(data.userAcess === 3){
+ 
+    if(data.userAcess !== 3){
       next('/login')
     }
   }
