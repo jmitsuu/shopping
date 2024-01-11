@@ -28,7 +28,7 @@ async function getCredentials() {
     'authorization': userToJson.tokenLocal
   }
  });
- if(userToJson.tokenLocal === data.userToken )
+ if(data.userAcess  === 3)
  acessLevel.value = true;
 
 }
