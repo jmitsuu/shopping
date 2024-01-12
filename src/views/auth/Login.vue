@@ -43,16 +43,16 @@ async function singIn() {
 }
 </script>
 <template>
-  <main class="container m-auto flex xl:flex-col p-4 gap-10 pt-20 relative">
+  <main class="container m-auto flex  p-4 gap-10 pt-20 relative">
     <Alert v-if="alertFields" :message="'Preencha todos os campos'" />
     <div class="p-2 w-full flex flex-col items-center justify-center gap-4">
       <form
-        class="flex flex-col p-4 h-full w-[600px] border-b-2"
+        class="flex flex-col p-4 h-full md:w-[500px] w-[300px] border-b-2"
         @submit.prevent="singIn"
       >
         <h1 class="font-bold uppercase text-gray-800 text-6xl text-right block">
           <span
-            class="border-b-4 border-red-400 w-15 h-2 font-extrabold text-gray-900"
+            class="border-b-4 border-red-400  h-2 font-extrabold text-gray-900"
             >Login</span
           >
         </h1>
@@ -61,17 +61,17 @@ async function singIn() {
         >
         <input
           type="email"
-          class="border-b outline-none w-96 text-red-600 mt-4 pb-2"
+          class="border-b outline-none md:w-96 text-red-600 mt-4 pb-2"
           placeholder="Seu e-mail"
           v-model="userEmail"
         />
         <label class="text-gray-400 uppercase text-lg font-bold mt-8"
           >Senha</label
         >
-        <div class="relative w-96">
+        <div class="relative md:w-96">
           <input
             :type="!showpassord ? 'password' : ' text'"
-            class="border-b outline-none w-96 text-red-600 mt-4 pb-2"
+            class="border-b outline-none  md:w-96 text-red-600 mt-4 pb-2"
             placeholder="Sua Senha"
             v-model="userPassword"
           />

@@ -38,7 +38,7 @@ const selectedProduct = computed(() => {
   <section class="min-h-screen py-10 flex flex-col justify-center items-center bg-slate-50">
     <div class="mx-auto container border-[0.1rem] rounded-md p-3 bg-white">
       <div
-        class="xl:w-2/4 min-w-[800px] mx-auto justify-center items-center border-[0.1rem] flx xl:flex rounded-md mt-4 xl:pl-10 xl:pt-9 p-4">
+        class="xl:w-2/4 mx-auto justify-center items-center border-[0.1rem] flx xl:flex rounded-md mt-4 xl:pl-10 xl:pt-9 p-4">
         <img :src="selectedProduct.image_url" class="h-56 mx-auto w-56" />
         <div class="xl:ml-10 w-full">
           <h1 class="text-gray-700 xl:text-[1.8rem] text-center font-semibold">
@@ -82,7 +82,7 @@ const selectedProduct = computed(() => {
             <h1>Quantidade</h1>
             <input type="number" v-model="qtd" class="ml-10 w-10" />
           </div>
-          <div class="mt-10 gap-3 flex">
+          <div class="mt-10 gap-3 flex items-center justify-center text-xs">
             <button class="px-2 py-3 flex bg-red-100 text-red-800 transition-all hover:bg-red-300 rounded-md">
               <ShoppingCartIcon class="h-5 mr-3" />
               Adicionar ao Carrinho
@@ -93,13 +93,13 @@ const selectedProduct = computed(() => {
           </div>
         </div>
       </div>
-      <div class="xl:w-2/4 min-w-[800px] mx-auto xl:min-h-[300px] mt-6 bg-white border-t-[0.1rem] xl:pl-10 xl:pt-9 p-4">
+      <div class="xl:w-2/4  mx-auto xl:min-h-[300px] mt-6 bg-white border-t-[0.1rem] xl:pl-10 xl:pt-9 p-4">
         <h1 class="text-gray-600 text-[1.4rem] p-3 w-full bg-slate-100 h-full">
           Descrição do Produto
         </h1>
         <p class="text-[0.9rem] mt-10">{{ selectedProduct.description }}</p>
       </div>
-      <div class="mx-auto min-w-[800px] xl:w-2/4 border-t-[0.1rem] p-3 bg-white">
+      <div class="mx-auto  xl:w-2/4 border-t-[0.1rem] p-3 bg-white">
         <div class="mt-10">
           <h1 class="uppercase font-bold text-gray-800">
             <span class="border-b-2 pb-2">Avaliações</span>
@@ -120,7 +120,7 @@ const selectedProduct = computed(() => {
                     <StarIcon class="h-6 w-6 text-yellow-600" />
                   </div>
 
-                  <p class="mt-4">messagem</p>
+                  <p class="mt-4 text-xs">produto é horrivel, nota dó</p>
                 </div>
               </div>
               <div class="flex gap-10">
@@ -134,11 +134,11 @@ const selectedProduct = computed(() => {
                     <StarIcon class="h-6 w-6 text-yellow-600" />
                   </div>
 
-                  <p class="mt-4">messagem</p>
+                  <p class="mt-4  text-xs">messagem</p>
                 </div>
               </div>
               <button
-                class="p-4 border-2 w-44 mx-auto text-gray-700 bg-gray-50 rounded-sm hover:bg-gray-400 hover:text-white uppercase">
+                class="p-4 border-2  mx-auto text-gray-700 bg-gray-50 rounded-sm hover:bg-gray-400 hover:text-white rounde-md">
                 Carregar Mais
               </button>
             </div>

@@ -50,22 +50,22 @@ const router = createRouter({
       }
     }
     ,
-    {
-      path: '/acessorios/joias',
-      name: 'joias',
-      component: Joias,
-      meta:{
-        isAuth:false
-      }
-    },
-    {
-      path: '/informatica/eletronicos',
-      name: 'eletronicos',
-      component: Eletronicos,
-      meta:{
-        isAuth:false
-      }
-    }
+    // {
+    //   path: '/acessorios/joias',
+    //   name: 'joias',
+    //   component: Joias,
+    //   meta:{
+    //     isAuth:false
+    //   }
+    // },
+    // {
+    //   path: '/informatica/eletronicos',
+    //   name: 'eletronicos',
+    //   component: Eletronicos,
+    //   meta:{
+    //     isAuth:false
+    //   }
+    // }
     ,
     {
       path: '/descricao/:id',

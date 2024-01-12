@@ -6,8 +6,16 @@ import Scope from "../../components/Scope.vue";
 import { textFeminine } from "../../helpers/message";
 import { useProduct } from "../../stores/storeProducts";
 const store = useProduct();
+const results =ref();
+
+async function getGenere(){
+  await store.getApi();
+  results.value =  store.responseUrl.filter(el => el.genere === 'female')
+}
 onMounted(() => {
-  store.getApi("/category/women's clothing");
+
+  getGenere();
+
 });
 </script>
 <template>
@@ -21,7 +29,7 @@ onMounted(() => {
     </template>
 
     <template #prod>
-      <div class="" v-for="item in store.responseUrl" :key="item._id">
+      <div class="" v-for="item in results" :key="item._id">
         <Products
           :title="item.title"
           :items="item"
