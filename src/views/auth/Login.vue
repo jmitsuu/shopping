@@ -35,7 +35,7 @@ async function singIn() {
 
       setTimeout(() => {
         window.location.href = '/'
-      }, 3000);
+      }, 1100);
     }
   } catch ({ response }) {
     userMessage.value = response.data.message;

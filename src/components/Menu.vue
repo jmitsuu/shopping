@@ -29,7 +29,10 @@ async function getCredentials() {
     'authorization': userToJson.tokenLocal
   }
  });
- if(data.userAcess  === 3)
+
+const acess = data.find(i => i.acess_level);
+
+ if(acess.acess_level === 3)
  acessLevel.value = true;
 
 }

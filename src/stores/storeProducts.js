@@ -10,7 +10,16 @@ export const useProduct = defineStore("useProduct", () => {
   const verifyUserAdm = ref(false);
   const verifyUser = ref();
   const userName = ref("");
+  const token = ref('')
 
+//token Temporario
+ function getLocal(){
+  const jsonToken = localStorage.getItem('credentials')
+  if(!jsonToken) return;
+  token.value = JSON.parse(jsonToken).tokenLocal
+ 
+ }
+ getLocal()
   //this function receive route parameters
   const getApi = async (fetch) => {
     skeletonLoad.value = true;
@@ -21,28 +30,36 @@ export const useProduct = defineStore("useProduct", () => {
       alert(error.message);
     }
   };
+  
   async function postProduct(items) {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify(items);
 
-    const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow",
-    };
+try {
+  const {data} = await instance.post('/products', raw, {
+    headers:{
+      "Content-Type": "application/json",
+      "authorization" : `${token.value}`
+    }
+  })
+  getApi()
+  
+} catch (error) {
+  console.log(error)
+  
+}
 
-    fetch(`${url}/products`, requestOptions)
-      .then(() => {
-        getApi();
-      })
-      .catch((error) => console.log("error", error));
   }
 
   async function deleteProduct(id) {
-    await instance.delete(`/products/${id}`);
+    await instance.delete(`/products/${id}`,{
+      headers:{
+        
+        "authorization" : `${token.value}`
+      }
+    });
     getApi();
   }
   function credentials(name, auth, level, token) {
@@ -61,7 +78,7 @@ export const useProduct = defineStore("useProduct", () => {
   
 
    
-    console.log( userName.value, verifyUser.value,  verifyUserAdm.value )
+    
   }
 
   return {

@@ -1,54 +1,53 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/Home.vue'
-import Masculino from "../views/vestuario/Masculino.vue"
-import Feminino from "../views/vestuario/Feminino.vue"
-import Joias from "../views/acessorios/Joias.vue"
-import Eletronicos from "../views/informatica/Eletronicos.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/Home.vue";
+import Masculino from "../views/vestuario/Masculino.vue";
+import Feminino from "../views/vestuario/Feminino.vue";
+import Joias from "../views/acessorios/Joias.vue";
+import Eletronicos from "../views/informatica/Eletronicos.vue";
 import Description from "../views/Descriptions.vue";
 import Administrator from "../views/panel/Administrator.vue";
 import Login from "../views/auth/Login.vue";
 import Register from "../views/auth/Register.vue";
-import instance from '../http/getUrl';
-
+import instance from "../http/getUrl";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: HomeView,
-      meta:{
-        isAuth:false
-      }
+      meta: {
+        isAuth: false,
+      },
     },
     {
-      path: '/about',
-      name: 'about',
+      path: "/about",
+      name: "about",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/About.vue'),
-      meta:{
-        isAuth:false
-      }
+      component: () => import("../views/About.vue"),
+      meta: {
+        isAuth: false,
+      },
     },
     {
-      path: '/vestuario/masculino',
-      name: 'masculino',
+      path: "/vestuario/masculino",
+      name: "masculino",
       component: Masculino,
-      meta:{
-        isAuth:false
-      }
+      meta: {
+        isAuth: false,
+      },
     },
     {
-      path: '/vestuario/feminino',
-      name: 'feminino',
+      path: "/vestuario/feminino",
+      name: "feminino",
       component: Feminino,
-      meta:{
-        isAuth:false
-      }
-    }
+      meta: {
+        isAuth: false,
+      },
+    },
     ,
     // {
     //   path: '/acessorios/joias',
@@ -66,59 +65,56 @@ const router = createRouter({
     //     isAuth:false
     //   }
     // }
-    ,
     {
-      path: '/descricao/:id',
-      name: 'descricao',
-      component:  Description,
-      meta:{
-        isAuth:false
-      }
-    }
-    ,
+      path: "/descricao/:id",
+      name: "descricao",
+      component: Description,
+      meta: {
+        isAuth: false,
+      },
+    },
     {
-      path: '/administrador/',
-      name: 'administrador',
+      path: "/administrador/",
+      name: "administrador",
       component: Administrator,
-      meta:{
-        isAuth:true
-      }
-    }
-    ,
+      meta: {
+        isAuth: true,
+      },
+    },
     {
-      path: '/auth/acesso',
-      name: 'acesso',
+      path: "/auth/acesso",
+      name: "acesso",
       component: Login,
-      meta:{
-        isAuth:false
-      }
-    }
-    ,
+      meta: {
+        isAuth: false,
+      },
+    },
     {
-      path: '/auth/cadastrar',
-      name: 'cadastrar',
+      path: "/auth/cadastrar",
+      name: "cadastrar",
       component: Register,
-      meta:{
-        isAuth:false
-      }
-    }
-  ]
-})
+      meta: {
+        isAuth: false,
+      },
+    },
+  ],
+});
 
-router.beforeEach( async (to, from, next) =>{
-  if(to.meta.isAuth){
-    const user = JSON.parse(localStorage.getItem('credentials'));
-    const {data} = await instance.get('/admin',{
-      headers:{
-        'authorization': user.tokenLocal
-      }
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.isAuth) {
+    const user = JSON.parse(localStorage.getItem("credentials"));
+    const { data } = await instance.get("/admin", {
+      headers: {
+        authorization: user.tokenLocal,
+      },
     });
- 
-    if(data.userAcess !== 3){
-      next('/login')
+
+    const acess = data.find((i) => i.acess_level);
+    if (acess.acess_level !== 3) {
+      next("/login");
     }
   }
-  next()
-})
+  next();
+});
 
-export default router
+export default router;
